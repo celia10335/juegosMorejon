@@ -1,0 +1,198 @@
+:root {
+  --fondo: ;
+  --rojo: #e3170a;
+  --verdeClaro: #c4ffb2;
+  --amarillo: #ff9f1c;
+  --azulOscuro: #011627;
+  --azulOscuroTran: rgb(1, 22, 39, 0.5);
+  --esquinaPeq: 8px;
+  --esquinaMed: 20px;
+  --esquinaGrande: 45px;
+  --fuenteTitulo: 'Rubik Iso', cursive;
+  --fuente1: 'Gochi Hand', cursive;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url('./img/fondoPatio.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+header {
+  height: 36vh;
+  width: 86vw;
+  margin: auto;
+  background-color: var(--amarillo);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  border-bottom-right-radius: var(--esquinaGrande);
+  border-bottom-left-radius: var(--esquinaGrande);
+}
+
+header h1 {
+  font-size: 4em;
+  text-align: left;
+  font-family: var(--fuenteTitulo);
+  margin-right: 20px;
+}
+
+.colegio {
+  background-image: url('./img/patio.jpg');
+  background-size: 100%;
+  width: 23vw;
+  height: 30vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: var(--esquinaMed);
+}
+
+main {
+  height: 52vh;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5vh 3vw;
+  margin: 6vh 7vw;
+}
+
+main > div {
+  background-color: var(--azulOscuroTran);
+  height: 100%;
+  border: 5px solid var(--azulOscuro);
+  border-radius: var(--esquinaPeq);
+  font-family: var(--fuente1);
+  color: var(--verdeClaro);
+  text-align: center;
+}
+
+main > div > p {
+  background-color: var(--azulOscuro);
+  font-size: 1.8em;
+  text-align: center;
+  padding: 1% 0;
+}
+
+main > div img {
+  height: 15vh;
+  margin-top: 1vh;
+}
+
+/* --------- Estilo páginas secundarias ------------ */
+header.headerPeq {
+  height: 18vh;
+  font-size: 0.8vw;
+}
+
+.headerPeq h1 {
+  margin: auto;
+}
+
+#mainRotu {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: left;
+  height: 100vh;
+}
+
+.paleta,
+.paletaTamanos {
+  background-color: var(--verdeClaro);
+  width: 140px;
+  padding: 10px;
+  font-family: var(--fuente1);
+}
+
+.paleta > div {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin: 30px;
+  transition: transform 0.3s linear;
+}
+.paleta > div:hover {
+  transform: scale(1.3);
+  transition: transform 0.3s linear;
+}
+
+.black {
+  background-color: black;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.pink {
+  background-color: pink;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.green {
+  background-color: green;
+}
+
+.tamano {
+  border-radius: 50%;
+  margin: 30px;
+  transition: border 0.3s linear;
+  background-color: black;
+}
+.tamano:hover {
+  border: 2px solid var(--rojo);
+  transition: border 0.3s linear;
+}
+
+.t10 {
+  height: 10px;
+  width: 10px;
+}
+
+.t20 {
+  height: 20px;
+  width: 20px;
+}
+
+.t30 {
+  height: 30px;
+  width: 30px;
+}
+
+.t40 {
+  height: 40px;
+  width: 40px;
+}
+
+.t50 {
+  height: 50px;
+  width: 50px;
+}
+
+.t60 {
+  height: 60px;
+  width: 60px;
+}
+
+.t70 {
+  height: 70px;
+  width: 70px;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./estiloMorejon.css" />
+    <title>Rotulador</title>
+  </head>
+  <body>
+    <header class="headerPeq">
+      <h1>Dibuja lo que quieras</h1>
+    </header>
+    <div id="mainRotu">
+      <div class="paleta">
+        <h2>Elige color</h2>
+        <div class="blue color"></div>
+        <div class="red color"></div>
+        <div class="yellow color"></div>
+        <div class="black color"></div>
+        <div class="pink color"></div>
+        <div class="orange color"></div>
+        <div class="green color"></div>
+      </div>
+      <div class="paletaTamanos">
+        <h2>Elige tamaño</h2>
+        <div class="tamano t10"></div>
+        <div class="tamano t20"></div>
+        <div class="tamano t30"></div>
+        <div class="tamano t40"></div>
+        <div class="tamano t50"></div>
+        <div class="tamano t60"></div>
+        <div class="tamano t70"></div>
+      </div>
+    </div>
+    <script>
+      var tam = 20;
+      var color = 'black';
+
+      //Obtener el color a partir de la clase
+      function getColor(element) {
+        return element.classList[0];
+      }
+
+      var arrayColores = document.getElementsByClassName('color');
+
+      for (let cirColor of arrayColores) {
+        cirColor.addEventListener('click', function (ev) {
+          color = getColor(cirColor);
+          return color;
+        });
+      }
+
+      //Obtener el tamaño a partir de la clase
+      function getTam(element) {
+        return element.classList[1];
+      }
+
+      var arrayTamanos = document.getElementsByClassName('tamano');
+
+      for (let ud of arrayTamanos) {
+        ud.addEventListener('click', function () {
+          tamString = getTam(ud);
+          tam = tamString.substring(1, 2) * 10;
+          return tam;
+        });
+      }
+
+      //Función que pinta:
+      function pintar(ev) {
+        // Crea un div llamado circulo.
+        let circulo = document.createElement('div');
+        // Genera un diámetro aleatorio entre 10 y 300 para el ancho del div.
+        // Le ponemos al div de ancho el diámetro generado.
+        circulo.style.width = tam + 'px';
+        // Le ponemos al div de alto el diámetro generado.
+        circulo.style.height = tam + 'px';
+        // Le ponemos al div los bordes redondos, para que sea un círculo.
+        circulo.style.borderRadius = '50%';
+        // Le ponemos al div posición absoluta, para poder colocarlo donde queramos de la pantalla.
+        circulo.style.position = 'absolute';
+        // Le ponemos al div las coordenadas X e Y de donde se ha hecho click en pantalla,
+        // restando el radio del cículo para que el ratón aparezca en el medio del mismo.
+        circulo.style.top = ev.clientY - tam / 2 + 'px';
+        circulo.style.left = ev.clientX - tam / 2 + 'px';
+        // Le ponemos al div un color aleatorio, generando 3 números entre 0 y 256.
+        circulo.style.backgroundColor = color;
+        // Por último, añadimos el círculo al body del documento.
+        document.body.appendChild(circulo);
+      }
+
+      function aumentarTam(ev) {
+        tam++;
+      }
+
+      // Añade un evento al hacer click sobre el documento.
+      document.addEventListener('mousedown', function (ev) {
+        document.addEventListener('mousemove', pintar);
+        document.addEventListener('wheel', aumentarTam);
+      });
+
+      document.addEventListener('mouseup', function (ev) {
+        document.removeEventListener('mousemove', pintar);
+        document.removeEventListener('wheel', aumentarTam);
+      });
+    </script>
+  </body>
+</html>
