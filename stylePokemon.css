@@ -1,0 +1,459 @@
+@font-face {
+  font-family: 'Pokemon Classic';
+  src: url('./fonts/Pokemon\ Classic.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Pokemon Solid';
+  src: url('./fonts/Pokemon\ Solid.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+:root {
+  --altoHeader: 12vh;
+  --smallGradient: radial-gradient(
+    circle,
+    rgba(255, 251, 247, 1) 0%,
+    rgba(240, 136, 187, 1) 45%,
+    rgba(224, 65, 183, 1) 81%
+  );
+  --bigGradient: radial-gradient(
+    circle,
+    rgba(255, 251, 247, 1) 0%,
+    rgba(34, 121, 195, 1) 76%,
+    rgba(34, 70, 195, 1) 100%
+  );
+
+  /* La siguiente variable almacena el tipo de transición que hacen las tarjetas al girar. El cubic-bezier les da el efecto de "rebote" */
+  --transition: transform 0.8s cubic-bezier(0.5, 1.3, 0.5, 1.3);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+  background-image: url('./img/space-art.jpg.jpg');
+  background-size: cover;
+  background-position: center;
+  font-family: 'Pokemon Solid';
+}
+
+header {
+  height: var(--altoHeader);
+  width: 100vw;
+  margin: 30px 0;
+  color: white;
+  letter-spacing: 0.25em;
+  line-height: 3em;
+
+  /* propiedades flex para ajustar el texto siempre centrado (tanto en horizontal como en vertical) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  overflow-x: hidden;
+  width: 85vw;
+  margin: auto;
+  padding-bottom: 50px;
+
+  /* --- establezco una relación de aspecto de manera que la proporción sea siempre 6 unidades en horizontal y 5 en vertical. De esta manera, no se deforman las imágenes y los div son siempre cuadrados (salvo los alargados) --- */
+  aspect-ratio: 6 / 5;
+
+  /* Propiedades grid del main */
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 9px;
+}
+
+.tarjeta {
+  position: relative;
+}
+
+.tarjeta > div {
+  border-radius: 6px;
+}
+
+.big {
+  grid-row: span 2;
+  grid-column: span 2;
+}
+
+.long {
+  grid-column: span 2;
+}
+
+/* ------------------ CARAS A Y B DE CADA TARJETA */
+/* Les asigno a ambos position absolute y top 0 para que queden una justo encima de la otra. Por otro lado, les doy propiedad backface: hidden para que sólo sea visible el anverso del div */
+.caraA {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: white;
+
+  transform: rotateY(0deg);
+  backface-visibility: hidden;
+  transition: var(--transition);
+}
+
+.caraB {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: white;
+  background-image: url('./img/pokeball.png');
+  background-size: 100%;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+
+  transition: var(--transition);
+}
+
+.caraB > div {
+  width: 90%;
+  padding: 6px;
+  background-color: rgba(255, 255, 255, 0.693);
+  border-radius: 10px;
+  font-family: 'Pokemon Classic';
+  text-align: center;
+  font-size: 0.9vw;
+  color: black;
+}
+
+.long .caraB {
+  background-image: url('./img/pokeball2.png');
+}
+
+/* ------------------- EFECTO DE CARTA GIRADA */
+.girada {
+  transform: rotateY(180deg);
+  transition: var(--transition);
+}
+
+.girada ~ .caraB {
+  transform: rotateY(0deg);
+  transition: var(--transition);
+}
+
+/* ------------------- IMÁGENES DE FONDO DE TARJETAS - CARA A */
+.t1 > .caraA {
+  background-image: url('./img/pikachu.png'), var(--bigGradient);
+  background-size: cover;
+  background-position: center;
+}
+
+.t2 > .caraA {
+  background-image: url('./img/golett.png'), var(--smallGradient);
+  background-size: cover;
+  background-position: center;
+}
+
+.t3 > .caraA {
+  background-image: url('./img/wooloo.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.t4 > .caraA {
+  background-image: url('./img/lugia.png'), var(--bigGradient);
+  background-size: cover;
+  background-position: center;
+}
+
+.t5 > .caraA {
+  background-image: url('./img/totodile.png'), var(--smallGradient);
+  background-size: cover;
+  background-position: center;
+}
+
+.t6 > .caraA {
+  background-image: url('./img/gengar.png'), var(--smallGradient);
+  background-size: cover;
+  background-position: center;
+}
+
+.t7 > .caraA {
+  background-image: url('./img/electivire.png'), var(--smallGradient);
+  background-size: cover;
+  background-position: center;
+}
+
+.t8 > .caraA {
+  background-image: url('./img/zacian.png'), var(--bigGradient);
+  background-size: cover;
+  background-position: center;
+}
+
+.t9 > .caraA {
+  background-image: url('./img/garchomp.png'), var(--smallGradient);
+  background-size: cover;
+  background-position: center;
+}
+.t10 > .caraA {
+  background-image: url('./img/zorua.png'), var(--smallGradient);
+  background-size: cover;
+  background-position: center;
+}
+
+.t11 > .caraA {
+  background-image: url('./img/empoleon.png'), var(--smallGradient);
+  background-size: cover;
+  background-position: center;
+}
+
+.t12 > .caraA {
+  background-image: url('./img/salamence.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* -------------------- POSICIONAMIENTO DENTRO DE LA CUADRÍCULA GRID */
+.tarjeta:nth-child(7) {
+  grid-area: 4 / 3 / span 1 / span 1;
+}
+
+.tarjeta:nth-child(8) {
+  grid-area: 4 / 4 / span 2 / span 2;
+}
+
+.tarjeta:nth-child(9) {
+  grid-column: 5;
+}
+
+.tarjeta:nth-child(10) {
+  grid-row: 5;
+}
+
+.tarjeta:nth-child(11) {
+  grid-area: 4 / 6 / span 1 / span 1;
+}
+
+.tarjeta:nth-child(12) {
+  grid-row: 5;
+}
+
+/* ---------------- EFECTO DE RÓTULO DESLIZABLE */
+div.rotulo {
+  position: absolute;
+  bottom: 10px;
+  left: 10%;
+  height: 5.7vh;
+  width: 80%;
+  background: rgb(60, 58, 180);
+  background: linear-gradient(
+    0deg,
+    rgba(21, 25, 185, 1) 13%,
+    rgba(249, 36, 255, 1) 44%,
+    rgba(252, 146, 32, 1) 87%
+  );
+  overflow: hidden;
+  font-size: 1.4vw;
+  color: white;
+  letter-spacing: 0.2em;
+  border-radius: 6px;
+  border: solid 2px white;
+  opacity: 0;
+  padding: 0;
+
+  /* propiedades flex para ajustar el texto siempre centrado (tanto en horizontal como en vertical) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+div.rotulo > p {
+  position: relative;
+  top: -0.8vh;
+}
+
+div.rotulo > div {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(226, 0, 226);
+  transition: all 0.7s linear;
+}
+
+.caraA:hover > .rotulo {
+  opacity: 1;
+  animation: animated_shadow 2.5s infinite, animation 1.2s 0.5s linear;
+  transition: opacity 1.2s linear;
+}
+
+.caraA:hover > div.rotulo > div {
+  translate: 100%;
+  transition: all 1.2s 0.5s linear;
+}
+
+/* Animación asignada al hover de cada uno de los div "caraA" */
+@keyframes animated_shadow {
+  50% {
+    box-shadow: 0px 0px 8px 5px rgb(255, 255, 255);
+  }
+}
+
+/* *********************** ADAPTACIÓN DEL DISEÑO A DISPOSITIVOS DE ANCHO MEDIO *********************** */
+@media screen and (max-width: 900px) {
+  main {
+    overflow: hidden;
+    aspect-ratio: 1 / 12;
+    grid-template-columns: 100vw;
+    grid-template-rows: repeat(12, 1fr);
+  }
+  .tarjeta {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+
+  div.caraA,
+  div.caraB {
+    width: 85vw;
+    aspect-ratio: 1;
+    background-repeat: no-repeat;
+  }
+
+  .t3 > .caraA {
+    background-image: url(./img/wooloo-sq.png);
+  }
+
+  .t12 > .caraA {
+    background-image: url(./img/salamence-sq.png);
+  }
+
+  .long > .caraB {
+    background-image: url(./img/pokeball.png);
+  }
+
+  /* -------------------- POSICIONAMIENTO DENTRO DE LA CUADRÍCULA GRID */
+  .tarjeta:nth-child(7) {
+    grid-area: 7 / 1 / 8 / 2;
+  }
+
+  .tarjeta:nth-child(8) {
+    grid-area: 8 / 1 / 9 / 2;
+  }
+
+  .tarjeta:nth-child(9) {
+    grid-area: 9 / 1 /10 / 2;
+  }
+
+  .tarjeta:nth-child(10) {
+    grid-area: 10 / 1 / 11 / 2;
+  }
+
+  .tarjeta:nth-child(11) {
+    grid-area: 11 / 1 / 12 / 2;
+  }
+
+  .tarjeta:nth-child(12) {
+    grid-area: 12 / 1 / 13 / 2;
+  }
+
+  /* Colores de fondo */
+  :root {
+    --smallGradient: radial-gradient(
+      circle,
+      rgb(255, 54, 111) 0%,
+      rgb(249, 255, 84) 45%,
+      rgb(71, 187, 255) 81%
+    );
+    --bigGradient: radial-gradient(
+      circle,
+      rgba(71, 187, 255) 0%,
+      rgba(249, 255, 84) 45%,
+      rgba(255, 54, 111) 81%
+    );
+  }
+
+  header {
+    text-align: center;
+    padding: 0px 20px 20px 20px;
+  }
+  header h1 {
+    font-size: 2.3em;
+    margin-bottom: 18px;
+  }
+
+  header h2 {
+    font-size: 1.7em;
+    line-height: 1.4em;
+  }
+
+  .caraB div {
+    font-size: 3vw;
+  }
+
+  .caraA > div.rotulo {
+    height: 9vw;
+    bottom: 65px;
+    font-size: 1.5em;
+  }
+}
+
+/* *********************** ADAPTACIÓN DEL DISEÑO A DISPOSITIVOS MÓVILES *********************** */
+@media screen and (max-width: 600px) {
+  :root {
+    --smallGradient: radial-gradient(
+      circle,
+      rgba(255, 251, 247, 1) 0%,
+      rgba(240, 136, 187, 1) 45%,
+      rgba(224, 65, 183, 1) 81%
+    );
+    --bigGradient: radial-gradient(
+      circle,
+      rgba(255, 251, 247, 1) 0%,
+      rgba(34, 121, 195, 1) 76%,
+      rgba(34, 70, 195, 1) 100%
+    );
+  }
+  header h1 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+
+  header h2 {
+    font-size: 1em;
+    line-height: 1.3em;
+  }
+
+  .caraA > div.rotulo {
+    height: 9vw;
+    bottom: 45px;
+    font-size: 1.1em;
+    opacity: 1;
+    animation: animated_shadow 2.5s infinite, animation 1.2s 0.5s linear;
+  }
+
+  div.rotulo > div {
+    display: none;
+  }
+
+  .caraA:hover > .rotulo {
+    opacity: 1;
+    transition: none;
+  }
+
+  .caraA:hover > div.rotulo > div {
+    display: none;
+  }
+}

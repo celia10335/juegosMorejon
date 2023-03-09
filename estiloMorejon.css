@@ -58,7 +58,7 @@ main {
   height: 52vh;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 5vh 3vw;
   margin: 6vh 7vw;
 }
