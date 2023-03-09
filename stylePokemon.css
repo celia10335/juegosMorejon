@@ -161,7 +161,7 @@ main {
 }
 
 .t2 > .caraA {
-  background-image: url('./img/golett.png'), var(--smallGradient);
+  background-image: url('./img/lucario.webp'), var(--smallGradient);
   background-size: cover;
   background-position: center;
 }
